@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cursor Workshop — واجهة تبني نفسها بمؤشرات ملونة</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- الشريط العلوي لمساحة الرسم والروابط التفاعلية -->
+  <header class="cw-canvas-header">
+    <a href="#section-1" class="cw-brand">
+      <span class="cw-brand-badge">CW</span>
+      <span data-i18n-ar="ورشة المؤشرات • Cursor Workshop" data-i18n-en="Cursor Workshop • Self-Building UI">ورشة المؤشرات • Cursor Workshop</span>
+    </a>
+
+    <div class="cw-status-pill" role="status" aria-live="polite">
+      <span id="cw-status-dot" class="cw-status-dot"></span>
+      <span id="cw-status-label">يبني الواجهة الآن...</span>
+    </div>
+
+    <nav class="cw-top-nav" aria-label="التنقل الرئيسي">
+      <a href="#section-1" class="cw-nav-link" data-cw-goto-section="0" data-i18n-ar="١. العرض الرئيسي" data-i18n-en="1. Hero Stage">١. العرض الرئيسي</a>
+      <a href="#section-2" class="cw-nav-link" data-cw-goto-section="1" data-i18n-ar="٢. معمارية المكوّن" data-i18n-en="2. Architecture">٢. معمارية المكوّن</a>
+      <a href="#section-3" class="cw-nav-link" data-cw-goto-section="2" data-i18n-ar="٣. التوثيق والتكامل" data-i18n-en="3. Docs & Integration">٣. التوثيق والتكامل</a>
+      <button type="button" id="cw-open-docs-btn" class="cw-nav-link cw-nav-link-accent" data-i18n-ar="📖 دليل README والملفات" data-i18n-en="📖 README & Files Guide">📖 دليل README والملفات</button>
+    </nav>
+  </header>
+
+  <!-- المحتوى الرئيسي المقسم إلى أقسام تبنيها المؤشرات -->
+  <main class="cw-main">
+
+    <!-- ==================== القسم الأول: يبدأ تلقائياً عند فتح الصفحة ==================== -->
+    <section id="section-1" class="cw-section" data-cw-section="1">
+      <div class="cw-section-tag">
+        <span>SECTION 01</span>
+        <span>•</span>
+        <span data-i18n-ar="بناء تلقائي متوازٍ + نسخ البطاقات" data-i18n-en="Auto Parallel Build + Card Cloning">بناء تلقائي متوازٍ + نسخ البطاقات</span>
+      </div>
+
+      <div class="cw-hero-grid">
+        <!-- العنصر 1: مؤشر يسحب إطار الصورة من زاوية إلى زاوية ثم تنكشف الصورة الرمزية -->
+        <div id="hero-avatar"
+             class="cw-avatar-slot"
+             data-cw-item
+             data-cw-step="1"
+             data-cw-action="draw-image"
+             data-cw-cursor="cyan"
+             data-cw-duration="2400">
+          <div class="cw-avatar-inner">
+            <!-- صورة رمزية وهمية أصلية بـ SVG -->
+            <svg class="cw-avatar-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
+              <defs>
+                <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#06b6d4" />
+                  <stop offset="50%" stop-color="#8b5cf6" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+              <circle cx="60" cy="60" r="56" fill="#0f172a" stroke="url(#avatarGrad)" stroke-width="4" />
+              <circle cx="60" cy="46" r="20" fill="url(#avatarGrad)" />
+              <path d="M26 98 C28 74, 92 74, 94 98" fill="url(#avatarGrad)" opacity="0.9" />
+              <circle cx="53" cy="44" r="2.8" fill="#090d16" />
+              <circle cx="67" cy="44" r="2.8" fill="#090d16" />
+              <path d="M53 52 Q60 57 67 52" stroke="#090d16" stroke-width="2.5" fill="none" stroke-linecap="round" />
+              <rect x="76" y="20" width="22" height="14" rx="4" fill="#f59e0b" />
+              <text x="87" y="30" text-anchor="middle" font-size="8" font-family="monospace" font-weight="bold" fill="#090d16">UI</text>
+            </svg>
+            <span class="cw-avatar-caption" data-i18n-ar="طارق السعدي • مهندس واجهات" data-i18n-en="Tariq Al-Saadi • UI Architect">طارق السعدي • مهندس واجهات</span>
+          </div>
+        </div>
+
+        <!-- العنصر 2 (بالتوازي مع الصورة): مؤشر ثانٍ يرسم مساحة العنوان ويكتب النص تدريجياً مع مؤشر كتابة يومض -->
+        <div id="hero-title-box"
+             class="cw-title-box"
+             data-cw-item
+             data-cw-step="1"
+             data-cw-action="draw-type"
+             data-cw-cursor="violet"
+             data-cw-duration="2900">
+          <div class="cw-badge-row">
+            <span class="cw-chip" data-i18n-ar="مكوّن ويب مستقل بدون مكتبات" data-i18n-en="Zero-Dependency Web Component">مكوّن ويب مستقل بدون مكتبات</span>
+            <span class="cw-chip" data-i18n-ar="صوت تفاعلي Web Audio" data-i18n-en="Procedural Web Audio">صوت تفاعلي Web Audio</span>
+          </div>
+          <h1 class="cw-hero-title"
+              data-cw-type
+              data-ar="واجهة حيّة تبني نفسها أمام الزائر خطوة بخطوة"
+              data-en="A Living Interface That Builds Itself Step by Step">واجهة حيّة تبني نفسها أمام الزائر خطوة بخطوة</h1>
+          <p class="cw-hero-subtitle"
+             data-cw-type
+             data-ar="نموذج Cursor Workshop يدمج حركة المؤشرات الملونة، قياسات الأبعاد الحية، والكتابة التدريجية في محرك خفيف قابل لإعادة الاستخدام في مواقعك."
+             data-en="Cursor Workshop blends multi-cursor choreography, live dimension rulers, and progressive typing into a lightweight engine reusable across your sites.">نموذج Cursor Workshop يدمج حركة المؤشرات الملونة، قياسات الأبعاد الحية، والكتابة التدريجية في محرك خفيف قابل لإعادة الاستخدام في مواقعك.</p>
+        </div>
+      </div>
+
+      <!-- بطاقات القسم الأول: مؤشر ثالث يرسم البطاقة الأولى ثم يسحب نسخة مرئية منها إلى مكان البطاقة الثانية -->
+      <div class="cw-cards-grid">
+        <!-- العنصر 3: البطاقة الأولى -->
+        <article id="sec1-card1"
+                 class="cw-card"
+                 data-cw-item
+                 data-cw-step="2"
+                 data-cw-action="draw-card"
+                 data-cw-cursor="amber"
+                 data-cw-duration="1900">
+          <div class="cw-card-content">
+            <div class="cw-card-icon is-amber">📐</div>
+            <h2 class="cw-card-title" data-i18n-ar="رسم الأطر والقياسات اللحظية" data-i18n-en="Frame Dragging & Live Rulers">رسم الأطر والقياسات اللحظية</h2>
+            <p class="cw-card-desc" data-i18n-ar="يتحرك كل مؤشر إلى زاوية العنصر أولاً ثم يسحب الإطار مع إظهار العرض والارتفاع بالبكسل قبل كشف المحتوى النهائي." data-i18n-en="Each cursor travels to the element corner first, then drags its bounding frame with live pixel dimensions before revealing content.">يتحرك كل مؤشر إلى زاوية العنصر أولاً ثم يسحب الإطار مع إظهار العرض والارتفاع بالبكسل قبل كشف المحتوى النهائي.</p>
+            <a href="#section-2" class="cw-card-link" data-cw-goto-section="1" data-i18n-ar="استكشف معمارية المحرك ←" data-i18n-en="Explore Engine Architecture →">استكشف معمارية المحرك ←</a>
+          </div>
+        </article>
+
+        <!-- العنصر 4: البطاقة الثانية (تُبنى بسحب نسخة مرئية من البطاقة الأولى مع خطوط محاذاة وقياس المسافة) -->
+        <article id="sec1-card2"
+                 class="cw-card"
+                 data-cw-item
+                 data-cw-step="3"
+                 data-cw-action="clone-card"
+                 data-cw-clone-from="#sec1-card1"
+                 data-cw-cursor="amber"
+                 data-cw-duration="2500">
+          <div class="cw-card-content">
+            <div class="cw-card-icon">🧲</div>
+            <h2 class="cw-card-title" data-i18n-ar="النسخ المرئي وخطوط المحاذاة الذكية" data-i18n-en="Visual Cloning & Smart Snap Guides">النسخ المرئي وخطوط المحاذاة الذكية</h2>
+            <p class="cw-card-desc" data-i18n-ar="يسحب المؤشر نسخة مرئية من البطاقة المجاورة مع عرض خطوط المحاذاة الأفقية وقياس الفجوة والمسافة بالبكسل أثناء السحب." data-i18n-en="The cursor drags a visible clone from the sibling card while rendering horizontal snap guides and live pixel gap measurements.">يسحب المؤشر نسخة مرئية من البطاقة المجاورة مع عرض خطوط المحاذاة الأفقية وقياس الفجوة والمسافة بالبكسل أثناء السحب.</p>
+            <button type="button" class="cw-card-link" data-cw-open-docs data-i18n-ar="شاهد كود التفعيل في HTML ←" data-i18n-en="View HTML Markup Snippet →">شاهد كود التفعيل في HTML ←</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== القسم الثاني: يبدأ عند الوصول إليه بالتمرير أو عبر الجولة التلقائية ==================== -->
+    <section id="section-2" class="cw-section" data-cw-section="2">
+      <div class="cw-section-tag">
+        <span>SECTION 02</span>
+        <span>•</span>
+        <span data-i18n-ar="يُبنى عند التمرير أو أثناء الجولة التلقائية" data-i18n-en="Scroll-Triggered or Auto-Tour Build">يُبنى عند الوصول بالتمرير أو أثناء الجولة التلقائية</span>
+      </div>
+
+      <!-- العنصر 5: ترويسة القسم الثاني مع كتابة تدريجية -->
+      <div id="sec2-header"
+           class="cw-sec2-header"
+           data-cw-item
+           data-cw-step="1"
+           data-cw-action="draw-type"
+           data-cw-cursor="violet"
+           data-cw-duration="2400">
+        <h2 class="cw-sec2-title"
+            data-cw-type
+            data-ar="افصل المحرك عن المحتوى: أضف التأثير لأي صفحة بسمات HTML فقط"
+            data-en="Decoupled Engine: Add the Effect to Any Page via HTML Attributes">افصل المحرك عن المحتوى: أضف التأثير لأي صفحة بسمات HTML فقط</h2>
+        <p class="cw-sec2-sub"
+           data-cw-type
+           data-ar="لا حاجة لتعديل ملفات JavaScript عند تغيير التصميم؛ يقرأ المحرك سمات data-cw-* ويرتب المهام المتوازية والمتتابعة تلقائياً."
+           data-en="No JavaScript edits needed when changing layouts; the engine parses data-cw-* attributes and schedules parallel or sequential steps automatically.">لا حاجة لتعديل ملفات JavaScript عند تغيير التصميم؛ يقرأ المحرك سمات data-cw-* ويرتب المهام المتوازية والمتتابعة تلقائياً.</p>
+      </div>
+
+      <div class="cw-cards-grid">
+        <!-- العنصر 6: البطاقة الأولى في القسم الثاني -->
+        <article id="sec2-card1"
+                 class="cw-card"
+                 data-cw-item
+                 data-cw-step="1"
+                 data-cw-action="draw-card"
+                 data-cw-cursor="emerald"
+                 data-cw-duration="2100">
+          <div class="cw-card-content">
+            <div class="cw-card-icon is-emerald">🎛️</div>
+            <h3 class="cw-card-title" data-i18n-ar="تزامن دقيق بين الصوت والسرعة والإيقاف" data-i18n-en="Exact Audio, Speed & Pause Synchronization">تزامن دقيق بين الصوت والسرعة والإيقاف</h3>
+            <p class="cw-card-desc" data-i18n-ar="توليد فوري لنقرات الكتابة والسحب والمحاذاة عبر Web Audio API. عند الإيقاف المؤقت أو تسريع العرض إلى 2× و3× يتكيف الصوت والحركة في نفس اللحظة." data-i18n-en="Real-time Web Audio synthesis for typing clicks, drag ticks, and snap chimes. Pausing or switching to 2× and 3× adapts audio and motion in lockstep.">توليد فوري لنقرات الكتابة والسحب والمحاذاة عبر Web Audio API. عند الإيقاف المؤقت أو تسريع العرض إلى 2× و3× يتكيف الصوت والحركة في نفس اللحظة.</p>
+            <a href="#section-3" class="cw-card-link" data-cw-goto-section="2" data-i18n-ar="انتقل إلى مختبر التكامل ←" data-i18n-en="Go to Integration Lab →">انتقل إلى مختبر التكامل ←</a>
+          </div>
+        </article>
+
+        <!-- العنصر 7: البطاقة الثانية في القسم الثاني (نسخ ومحاذاة من البطاقة الأولى) -->
+        <article id="sec2-card2"
+                 class="cw-card"
+                 data-cw-item
+                 data-cw-step="2"
+                 data-cw-action="clone-card"
+                 data-cw-clone-from="#sec2-card1"
+                 data-cw-cursor="amber"
+                 data-cw-duration="2400">
+          <div class="cw-card-content">
+            <div class="cw-card-icon is-violet">🌍</div>
+            <h3 class="cw-card-title" data-i18n-ar="دعم كامل للعربية (RTL) وتقليل الحركة" data-i18n-en="Native Arabic RTL & Reduced-Motion Support">دعم كامل للعربية (RTL) وتقليل الحركة</h3>
+            <p class="cw-card-desc" data-i18n-ar="يحافظ المحرك على اتصال الحروف العربية أثناء الكتابة التدريجية، ويعرض الصفحة مكتملة فوراً للزوار الذين يفعّلون تقليل الحركة في أجهزتهم." data-i18n-en="Preserves cursive Arabic letter joining during progressive typing, and renders the full page immediately when prefers-reduced-motion is enabled.">يحافظ المحرك على اتصال الحروف العربية أثناء الكتابة التدريجية، ويعرض الصفحة مكتملة فوراً للزوار الذين يفعّلون تقليل الحركة في أجهزتهم.</p>
+            <button type="button" class="cw-card-link" data-cw-open-docs data-i18n-ar="راجع جدول سمات HTML ←" data-i18n-en="Inspect HTML Attributes Table →">راجع جدول سمات HTML ←</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== القسم الثالث: مختبر التكامل والروابط الفعالة ==================== -->
+    <section id="section-3" class="cw-section" data-cw-section="3">
+      <div class="cw-section-tag">
+        <span>SECTION 03</span>
+        <span>•</span>
+        <span data-i18n-ar="الخطوة الختامية للجولة والروابط الجاهزة" data-i18n-en="Final Tour Stage & Interactive Links">الخطوة الختامية للجولة والروابط الجاهزة</span>
+      </div>
+
+      <!-- العنصر 8: شريط الإجراءات والتكامل النهائي -->
+      <div id="sec3-cta"
+           class="cw-cta-bar"
+           data-cw-item
+           data-cw-step="1"
+           data-cw-action="draw-card"
+           data-cw-cursor="cyan"
+           data-cw-duration="2000">
+        <div class="cw-card-content" style="flex: 1; min-width: 250px;">
+          <h2 class="cw-card-title" data-i18n-ar="جاهز لتحويل التأثير إلى مكوّن في مواقعك" data-i18n-en="Ready to Embed as a Component in Your Websites">جاهز لتحويل التأثير إلى مكوّن في مواقعك</h2>
+          <p class="cw-card-desc" data-i18n-ar="جميع الملفات مفصولة وجاهزة للتشغيل محلياً أو على GitHub Pages بدون خادم. افتح دليل README لنسخ قالب السمات أو إعادة تشغيل العرض." data-i18n-en="All files are modular and ready to run locally or on GitHub Pages without a server. Open the README guide to copy the attribute template or replay.">جميع الملفات مفصولة وجاهزة للتشغيل محلياً أو على GitHub Pages بدون خادم. افتح دليل README لنسخ قالب السمات أو إعادة تشغيل العرض.</p>
+        </div>
+        <div class="cw-cta-actions">
+          <button type="button" class="cw-btn-primary" data-cw-open-docs data-i18n-ar="📖 فتح دليل README وطريقة الإضافة" data-i18n-en="📖 Open README & Integration Guide">📖 فتح دليل README وطريقة الإضافة</button>
+          <a href="#section-1" class="cw-btn-secondary" data-i18n-ar="↑ العودة لأعلى الصفحة" data-i18n-en="↑ Back to Top">↑ العودة لأعلى الصفحة</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== شريط التحكم السفلي المتجاوب والصالح للمس ==================== -->
+  <footer class="cw-control-bar" role="region" aria-label="شريط التحكم في العرض">
+    <!-- عدّاد العناصر المكتملة -->
+    <div class="cw-ctrl-group">
+      <div class="cw-counter-box" title="عدد العناصر المكتملة">
+        <span id="cw-counter-text" class="cw-counter-text">0 / 8 عناصر</span>
+        <div class="cw-progress-track" aria-hidden="true">
+          <div id="cw-progress-fill" class="cw-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- أزرار التحكم بالحركة والسرعة والجولة -->
+    <div class="cw-ctrl-group">
+      <button type="button" id="cw-btn-pause" class="cw-ctrl-btn">⏸ إيقاف مؤقت</button>
+
+      <div class="cw-speed-segmented" role="group" aria-label="سرعة العرض">
+        <button type="button" class="cw-speed-btn is-selected" data-cw-speed="1">1×</button>
+        <button type="button" class="cw-speed-btn" data-cw-speed="2">2×</button>
+        <button type="button" class="cw-speed-btn" data-cw-speed="3">3×</button>
+      </div>
+
+      <button type="button" id="cw-btn-tour" class="cw-ctrl-btn">🧭 جولة</button>
+      <button type="button" id="cw-btn-replay" class="cw-ctrl-btn">↺ إعادة</button>
+      <button type="button" id="cw-btn-skip" class="cw-ctrl-btn">⏭ تخطّي</button>
+    </div>
+
+    <!-- أزرار الصوت واللغة -->
+    <div class="cw-ctrl-group">
+      <button type="button" id="cw-btn-audio" class="cw-ctrl-btn">🔇 الصوت: صامت</button>
+      <button type="button" id="cw-btn-lang" class="cw-ctrl-btn">🌐 English</button>
+    </div>
+  </footer>
+
+  <!-- ==================== نافذة دليل README وهيكل الملفات المدمجة ==================== -->
+  <div id="cw-docs-modal" class="cw-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="cw-modal-title">
+    <div class="cw-modal">
+      <div class="cw-modal-header">
+        <h2 id="cw-modal-title" class="cw-modal-title" data-i18n-ar="دليل تشغيل Cursor Workshop وتحديد عناصر جديدة" data-i18n-en="Cursor Workshop README & Custom Elements Guide">دليل تشغيل Cursor Workshop وتحديد عناصر جديدة</h2>
+        <button type="button" id="cw-close-docs-btn" class="cw-ctrl-btn" style="min-height:36px; padding:4px 10px;">✕</button>
+      </div>
+      <div class="cw-modal-body">
+        <p data-i18n-ar="يتكون النموذج من 4 ملفات مستقلة تعمل محلياً أو عبر GitHub Pages بدون خادم أو مكتبات خارجية:" data-i18n-en="The prototype consists of 4 standalone files that run locally or on GitHub Pages without a server or external libraries:">
+          يتكون النموذج من 4 ملفات مستقلة تعمل محلياً أو عبر GitHub Pages بدون خادم أو مكتبات خارجية:
+        </p>
+        <ul style="padding-inline-start: 20px; display: grid; gap: 6px;">
+          <li><strong>index.html</strong> — <span data-i18n-ar="هيكل الصفحة والمحتوى مع سمات data-cw-* لتحديد العناصر." data-i18n-en="Page structure and content marked up with data-cw-* attributes.">هيكل الصفحة والمحتوى مع سمات data-cw-* لتحديد العناصر.</span></li>
+          <li><strong>styles.css</strong> — <span data-i18n-ar="تنسيقات مساحة الرسم الداكنة، المؤشرات، القياسات، وشريط التحكم اللمسي." data-i18n-en="Dark canvas grid, cursors, measurement pills, and touch control bar styles.">تنسيقات مساحة الرسم الداكنة، المؤشرات، القياسات، وشريط التحكم اللمسي.</span></li>
+          <li><strong>cursor-engine.js</strong> — <span data-i18n-ar="محرك التوقيت والمؤشرات والجولة التلقائية ومراقب التمرير." data-i18n-en="Timeline engine, multi-cursor choreography, auto-tour, and scroll observer.">محرك التوقيت والمؤشرات والجولة التلقائية ومراقب التمرير.</span></li>
+          <li><strong>audio-engine.js</strong> — <span data-i18n-ar="مولّد الأصوات الإجرائي عبر Web Audio API المتزامن مع سرعة العرض." data-i18n-en="Procedural Web Audio synthesizer synchronized with playback speed.">مولّد الأصوات الإجرائي عبر Web Audio API المتزامن مع سرعة العرض.</span></li>
+        </ul>
+
+        <h3 style="color: var(--text-primary); font-size: 0.98rem;" data-i18n-ar="طريقة تحديد عناصر جديدة في أي صفحة HTML:" data-i18n-en="How to Mark Up New Elements in Any HTML Page:">طريقة تحديد عناصر جديدة في أي صفحة HTML:</h3>
+        <pre class="cw-code-block"><code>&lt;!-- 1. حدّد القسم ليتم بناؤه تلقائياً أو عند الوصول إليه بالتمرير --&gt;
+&lt;section data-cw-section="1"&gt;
+
+  &lt;!-- 2. سحب إطار صورة وكشفها (الخطوة 1) --&gt;
+  &lt;div data-cw-item data-cw-step="1" data-cw-action="draw-image" data-cw-cursor="cyan"&gt;
+    &lt;div class="cw-avatar-inner"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 3. رسم عنوان وكتابة النص تدريجياً بالتوازي (نفس رقم الخطوة 1) --&gt;
+  &lt;div data-cw-item data-cw-step="1" data-cw-action="draw-type" data-cw-cursor="violet"&gt;
+    &lt;h1 data-cw-type data-ar="عنوان بالعربية" data-en="English Title"&gt;&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 4. رسم بطاقة ثم سحب نسخة مرئية منها إلى بطاقة ثانية --&gt;
+  &lt;article id="card-a" data-cw-item data-cw-step="2" data-cw-action="draw-card" data-cw-cursor="amber"&gt;...&lt;/article&gt;
+  &lt;article data-cw-item data-cw-step="3" data-cw-action="clone-card" data-cw-clone-from="#card-a" data-cw-cursor="amber"&gt;...&lt;/article&gt;
+
+&lt;/section&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- ربط محرك الصوت ومحرك المؤشرات المستقلين -->
+  <script src="audio-engine.js"></script>
+  <script src="cursor-engine.js"></script>
+  <script>
+    // فتح وإغلاق نافذة التوثيق المدمجة
+    (function () {
+      const modal = document.getElementById('cw-docs-modal');
+      const openBtn = document.getElementById('cw-open-docs-btn');
+      const closeBtn = document.getElementById('cw-close-docs-btn');
+      const triggers = document.querySelectorAll('[data-cw-open-docs]');
+
+      function openModal() {
+        if (modal) modal.classList.add('is-open');
+      }
+      function closeModal() {
+        if (modal) modal.classList.remove('is-open');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      triggers.forEach((btn) => btn.addEventListener('click', openModal));
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
