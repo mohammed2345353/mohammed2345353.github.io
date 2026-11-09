@@ -38,7 +38,7 @@ figcaption{margin-top:10px;color:var(--muted);font:12px ui-monospace,monospace;t
 <span class="tag" dir="ltr">MS / PORTFOLIO</span>
 <div class="actions">
 <button id="language" type="button" lang="en" hidden>English</button>
-<button id="skip" type="button" hidden>تخطّي الحركة</button>
+<button id="build-sound" type="button" hidden>فعّل الصوت</button><button id="skip" type="button" hidden>تخطّي الحركة</button>
 </div>
 </header>
 <main class="hero" id="hero">
@@ -71,13 +71,7 @@ const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const language = byId('language');
 const replay = byId('replay');
 const skip = byId('skip');
-let animations = [];
 let locale = 'ar';
-function finish() {
-  for (const animation of animations) animation.cancel();
-  animations = [];
-  skip.hidden = true;
-}
 function translate(next) {
   locale = next;
   const copy = words[locale];
@@ -92,43 +86,11 @@ function translate(next) {
   skip.textContent = copy.skip;
   byId('portrait').querySelector('img').alt = copy.alt;
 }
-function build() {
-  finish();
-  if (motion.matches || !Element.prototype.animate) return;
-  skip.hidden = false;
-  const hero = byId('hero').getBoundingClientRect();
-  const cursors = document.querySelectorAll('.cursor');
-  const tasks = [['name',0,470],['portrait',1,680]];
-  for (const [id,index,delay] of tasks) {
-    const element = byId(id);
-    const bounds = element.getBoundingClientRect();
-    const x = bounds.left - hero.left;
-    const y = bounds.top - hero.top;
-    const endX = Math.min(hero.width - 66, x + bounds.width * .76);
-    const startX = locale === 'ar' && index === 0 ? endX : x;
-    const finalX = locale === 'ar' && index === 0 ? x : endX;
-    const mask = locale === 'ar' && index === 0 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)';
-    animations.push(element.animate([{opacity:0,clipPath:mask},{opacity:1,clipPath:'inset(0)'}],
-      {duration:650,delay,easing:'ease-out',fill:'backwards'}));
-    animations.push(cursors[index].animate([
-      {opacity:0,transform:'translate(20px, 15px)'},
-      {opacity:1,transform:'translate('+startX+'px,'+y+'px)',offset:.37},
-      {opacity:1,transform:'translate('+finalX+'px,'+(y+Math.min(bounds.height*.6,65))+'px)',offset:.86},
-      {opacity:0,transform:'translate('+finalX+'px,'+(y+70)+'px)'}
-    ], {duration:delay+800,easing:'ease-in-out'}));
-  }
-  animations.push(byId('bio').animate([{opacity:0},{opacity:1}],{duration:350,delay:1160,fill:'backwards'}));
-  animations[animations.length-1].onfinish = finish;
-}
 language.hidden = false;
-replay.hidden = motion.matches || !Element.prototype.animate;
-language.onclick = () => { finish(); translate(locale === 'ar' ? 'en' : 'ar'); };
-skip.onclick = finish;
-replay.onclick = build;
-motion.addEventListener('change', () => { finish(); replay.hidden = motion.matches || !Element.prototype.animate; });
-byId('hero').addEventListener('focusin', finish);
-build();
+language.onclick = () => translate(locale === 'ar' ? 'en' : 'ar');
 </script>
+<script src="./cursor-workshop/audio-engine.js"></script>
+<script src="./portfolio-build.js"></script>
 </body>
 </html>
 
