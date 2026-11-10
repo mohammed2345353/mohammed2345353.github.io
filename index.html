@@ -54,6 +54,21 @@ header .tag{color:var(--ink)}
 .cards a{color:var(--blue)}
 @media(max-width:650px){.logo-stage{grid-row:1;min-height:200px}.cards{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.logo-control{transform:none;transition:none}}
+
+/* Full-page circuit traces and motion-curve handles on warm paper. */
+body{background:
+  linear-gradient(90deg,transparent, #f4f1e8dd 24%, #f4f1e8ed 50%, #f4f1e8dd 76%,transparent),
+  url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22840%22%20height%3D%22620%22%20viewBox%3D%220%200%20840%20620%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22soft%22%3E%3CfeGaussianBlur%20stdDeviation%3D%22.75%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23386281%22%20stroke-width%3D%221.5%22%20filter%3D%22url(%23soft)%22%3E%3Cpath%20d%3D%22M0%2091h92l44%2044h97m-233%2019h71l84%2084h64M0%20511h127l41-41h79M840%2097H712l-62%2062h-74m264%2030H740l-43%2043h-48m191%20278H710l-55-55h-91%22%2F%3E%3Cpath%20d%3D%22M19%20374C99%20374%20127%20284%20212%20313m609%2059c-80%200-110-92-193-63%22%20stroke-dasharray%3D%225%207%22%2F%3E%3Cpath%20d%3D%22M212%20313h48m-48%200v-47m416%2043h-47m47%200v49%22%20opacity%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%22233%22%20cy%3D%22135%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22219%22%20cy%3D%22238%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%22247%22%20cy%3D%22470%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22576%22%20cy%3D%22159%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22649%22%20cy%3D%22232%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%22564%22%20cy%3D%22455%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22m212%20307%206%206-6%206-6-6zm416-4%206%206-6%206-6-6z%22%20fill%3D%22%23386281%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top / min(100%, 1500px) 620px repeat-y,
+  repeating-linear-gradient(90deg,#365b7411 0 1px,transparent 1px 32px),
+  repeating-linear-gradient(0deg,#365b7411 0 1px,transparent 1px 32px),
+  #e7eaf0}
+:root{--blue:#235681}
+.github:hover{background:#194367}
+.instagram{color:var(--blue);border-color:#9fb8cd;background:#f7f8fa}
+.instagram:hover{background:#e4eef7}
+.logo-stage{background:linear-gradient(#23568114 1px,transparent 1px),linear-gradient(90deg,#23568114 1px,transparent 1px),#e4ebf0;background-size:22px 22px}
+.logo-control,.logo-control:hover{background:linear-gradient(145deg,#416e8e,#17374f);border-color:#648ba6;box-shadow:0 10px 0 #142f43,0 18px 28px #142f4355}
+@media(max-width:650px){body{background-size:auto,800px 620px,auto,auto,auto}}
 </style>
 </head>
 <body>
@@ -78,9 +93,9 @@ header .tag{color:var(--ink)}
 <div class="logo-stage">
 <button class="logo-control" type="button" id="logo" aria-label="حرّك الشعار">
 <svg viewBox="0 0 180 180" width="180" height="180" aria-hidden="true">
-<defs><linearGradient id="metal" x2="1" y2="1"><stop stop-color="#e2e8c7"/><stop offset="1" stop-color="#8cab81"/></linearGradient>
+<defs><linearGradient id="metal" x2="1" y2="1"><stop stop-color="#e5f3ff"/><stop offset="1" stop-color="#8dbbdc"/></linearGradient>
 <path id="monogram" d="M25 118V62l24 28 24-28v56m80-52h-38l-13 13 13 13h25l13 13-13 13h-38"/></defs>
-<use href="#monogram" fill="none" stroke="#192e24" stroke-width="12" stroke-linejoin="round" transform="translate(4 7)"/>
+<use href="#monogram" fill="none" stroke="#102a3d" stroke-width="12" stroke-linejoin="round" transform="translate(4 7)"/>
 <use href="#monogram" fill="none" stroke="url(#metal)" stroke-width="11" stroke-linejoin="round"/>
 </svg>
 </button>
