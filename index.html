@@ -55,20 +55,52 @@ header .tag{color:var(--ink)}
 @media(max-width:650px){.logo-stage{grid-row:1;min-height:200px}.cards{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.logo-control{transform:none;transition:none}}
 
-/* Full-page circuit traces and motion-curve handles on warm paper. */
-body{background:
-  linear-gradient(90deg,transparent, #f4f1e8dd 24%, #f4f1e8ed 50%, #f4f1e8dd 76%,transparent),
-  url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22840%22%20height%3D%22620%22%20viewBox%3D%220%200%20840%20620%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22soft%22%3E%3CfeGaussianBlur%20stdDeviation%3D%22.75%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23386281%22%20stroke-width%3D%221.5%22%20filter%3D%22url(%23soft)%22%3E%3Cpath%20d%3D%22M0%2091h92l44%2044h97m-233%2019h71l84%2084h64M0%20511h127l41-41h79M840%2097H712l-62%2062h-74m264%2030H740l-43%2043h-48m191%20278H710l-55-55h-91%22%2F%3E%3Cpath%20d%3D%22M19%20374C99%20374%20127%20284%20212%20313m609%2059c-80%200-110-92-193-63%22%20stroke-dasharray%3D%225%207%22%2F%3E%3Cpath%20d%3D%22M212%20313h48m-48%200v-47m416%2043h-47m47%200v49%22%20opacity%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%22233%22%20cy%3D%22135%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22219%22%20cy%3D%22238%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%22247%22%20cy%3D%22470%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22576%22%20cy%3D%22159%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22649%22%20cy%3D%22232%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%22564%22%20cy%3D%22455%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22m212%20307%206%206-6%206-6-6zm416-4%206%206-6%206-6-6z%22%20fill%3D%22%23386281%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top / min(100%, 1500px) 620px repeat-y,
-  repeating-linear-gradient(90deg,#365b7411 0 1px,transparent 1px 32px),
-  repeating-linear-gradient(0deg,#365b7411 0 1px,transparent 1px 32px),
-  #e7eaf0}
-:root{--blue:#235681}
-.github:hover{background:#194367}
-.instagram{color:var(--blue);border-color:#9fb8cd;background:#f7f8fa}
-.instagram:hover{background:#e4eef7}
-.logo-stage{background:linear-gradient(#23568114 1px,transparent 1px),linear-gradient(90deg,#23568114 1px,transparent 1px),#e4ebf0;background-size:22px 22px}
-.logo-control,.logo-control:hover{background:linear-gradient(145deg,#416e8e,#17374f);border-color:#648ba6;box-shadow:0 10px 0 #142f43,0 18px 28px #142f4355}
-@media(max-width:650px){body{background-size:auto,800px 620px,auto,auto,auto}}
+
+:root{
+  --paper:#e9f2fa;--ink:#142b43;--muted:#354e68;--line:#8daec9;
+  --blue:#175897;--deep:#113f70;--bright:#3b7db0;--shine:#a9d9ff;
+}
+:root[data-palette="forest"]{--paper:#e7f2e8;--ink:#172f25;--muted:#365648;--line:#8faf9a;--blue:#245c43;--deep:#174333;--bright:#468667;--shine:#b1dfbc}
+:root[data-palette="violet"]{--paper:#f0eaf8;--ink:#302144;--muted:#554568;--line:#ac97c5;--blue:#63458a;--deep:#482c6c;--bright:#8260ae;--shine:#dbc3ff}
+body{position:relative;isolation:isolate;background:var(--paper)}
+body::before,body::after{content:"";position:fixed;inset:-18px;pointer-events:none;z-index:-1}
+body::before{
+  background:
+    radial-gradient(circle at var(--glow-x,75%) var(--glow-y,32%),var(--shine),transparent 34%),
+    radial-gradient(circle at 88% 72%,var(--bright),transparent 54%),
+    radial-gradient(circle at 8% 16%,var(--bright),transparent 52%);
+  opacity:.55;
+}
+body::after{
+  background:
+    linear-gradient(90deg,transparent,var(--paper) 40%,var(--paper) 60%,transparent),
+    radial-gradient(circle,var(--blue) 1.5px,transparent 2px) 0 0/34px 34px,
+    repeating-linear-gradient(90deg,transparent 0 33px,color-mix(in srgb,var(--bright) 36%,transparent) 33px 34px),
+    repeating-linear-gradient(0deg,transparent 0 33px,color-mix(in srgb,var(--bright) 36%,transparent) 33px 34px);
+  opacity:.48;
+  transform:translate(var(--shift-x,0px),var(--shift-y,0px));
+}
+.shell{position:relative}
+.shell::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:var(--blue);opacity:.47;
+  mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22840%22%20height%3D%22620%22%20viewBox%3D%220%200%20840%20620%22%3E%3Cdefs%3E%3Cfilter%20id%3D%22soft%22%3E%3CfeGaussianBlur%20stdDeviation%3D%22.75%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23386281%22%20stroke-width%3D%221.5%22%20filter%3D%22url(%23soft)%22%3E%3Cpath%20d%3D%22M0%2091h92l44%2044h97m-233%2019h71l84%2084h64M0%20511h127l41-41h79M840%2097H712l-62%2062h-74m264%2030H740l-43%2043h-48m191%20278H710l-55-55h-91%22%2F%3E%3Cpath%20d%3D%22M19%20374C99%20374%20127%20284%20212%20313m609%2059c-80%200-110-92-193-63%22%20stroke-dasharray%3D%225%207%22%2F%3E%3Cpath%20d%3D%22M212%20313h48m-48%200v-47m416%2043h-47m47%200v49%22%20opacity%3D%22.65%22%2F%3E%3Ccircle%20cx%3D%22233%22%20cy%3D%22135%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22219%22%20cy%3D%22238%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%22247%22%20cy%3D%22470%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22576%22%20cy%3D%22159%22%20r%3D%225%22%2F%3E%3Ccircle%20cx%3D%22649%22%20cy%3D%22232%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%22564%22%20cy%3D%22455%22%20r%3D%225%22%2F%3E%3Cpath%20d%3D%22m212%20307%206%206-6%206-6-6zm416-4%206%206-6%206-6-6z%22%20fill%3D%22%23386281%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top / min(100%,1100px) 620px repeat-y;
+  transform:translate(var(--shift-x,0px),var(--shift-y,0px));
+}
+header,footer,.hero section,.cards details{background:color-mix(in srgb,var(--paper) 91%,white)}
+header,footer{padding-inline:12px}
+.hero section{padding:clamp(16px,3vw,30px);border-radius:12px}
+.actions{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:8px}
+#palette{min-height:42px;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font:inherit}
+#language,.instagram{background:var(--paper);color:var(--deep);border-color:var(--line)}
+#language:hover,.instagram:hover{background:var(--shine)}
+.github:hover{background:var(--deep)}
+.logo-stage{background:radial-gradient(circle,var(--bright),var(--deep));border-color:var(--line)}
+.logo-control,.logo-control:hover{background:linear-gradient(145deg,var(--bright),var(--deep));border-color:var(--line);box-shadow:0 10px 0 var(--deep),0 18px 28px #0005}
+#metal stop:first-child{stop-color:#fff}
+#metal stop:last-child{stop-color:var(--shine)}
+.logo-control .depth{stroke:var(--deep)}
+@media(prefers-reduced-motion:reduce){body::after,.shell::before{transform:none}}
 </style>
 </head>
 <body>
@@ -76,6 +108,12 @@ body{background:
 <header>
 <span class="tag" dir="ltr">MS / PORTFOLIO</span>
 <div class="actions">
+<label for="palette" id="palette-label" hidden>ألوان الموقع</label>
+<select id="palette" hidden>
+<option value="blue">أزرق غني</option>
+<option value="forest">أخضر غابي</option>
+<option value="violet">بنفسجي هادئ</option>
+</select>
 <button id="language" type="button" lang="en" hidden>English</button>
 </div>
 </header>
@@ -95,7 +133,7 @@ body{background:
 <svg viewBox="0 0 180 180" width="180" height="180" aria-hidden="true">
 <defs><linearGradient id="metal" x2="1" y2="1"><stop stop-color="#e5f3ff"/><stop offset="1" stop-color="#8dbbdc"/></linearGradient>
 <path id="monogram" d="M25 118V62l24 28 24-28v56m80-52h-38l-13 13 13 13h25l13 13-13 13h-38"/></defs>
-<use href="#monogram" fill="none" stroke="#102a3d" stroke-width="12" stroke-linejoin="round" transform="translate(4 7)"/>
+<use href="#monogram" fill="none" class="depth" stroke="#102a3d" stroke-width="12" stroke-linejoin="round" transform="translate(4 7)"/>
 <use href="#monogram" fill="none" stroke="url(#metal)" stroke-width="11" stroke-linejoin="round"/>
 </svg>
 </button>
@@ -138,10 +176,31 @@ const sections = {
   }
 };
 const language = byId('language');
+const palette = byId('palette');
+const palettes = ['blue', 'forest', 'violet'];
+const paletteCopy = {
+  ar: ['ألوان الموقع', 'أزرق غني', 'أخضر غابي', 'بنفسجي هادئ'],
+  en: ['Site colors', 'Rich blue', 'Forest green', 'Soft violet']
+};
+function applyPalette(value) {
+  const selected = palettes.includes(value) ? value : 'blue';
+  document.documentElement.dataset.palette = selected;
+  palette.value = selected;
+}
+try { applyPalette(localStorage.getItem('portfolio-palette')); }
+catch { applyPalette('blue'); }
+palette.hidden = byId('palette-label').hidden = false;
+palette.addEventListener('change', () => {
+  applyPalette(palette.value);
+  try { localStorage.setItem('portfolio-palette', palette.value); } catch {}
+});
 let locale = 'ar';
 function translate(next) {
   locale = next;
   const copy = words[locale];
+  const [paletteLabel, ...options] = paletteCopy[locale];
+  byId('palette-label').textContent = paletteLabel;
+  options.forEach((name, index) => { palette.options[index].textContent = name; });
   document.documentElement.lang = locale;
   document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
   byId('name').textContent = byId('footer-name').textContent = copy.name;
@@ -172,6 +231,18 @@ stage.addEventListener('pointerleave', () => tilt(0, 0));
 logo.addEventListener('click', event => {
   if (event.pointerType === 'mouse') return;
   tilt(logo.style.getPropertyValue('--ry') === '18deg' ? -18 : 18, -10);
+});
+
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const background = document.body.style;
+window.addEventListener('pointermove', event => {
+  if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
+  const x = event.clientX / window.innerWidth;
+  const y = event.clientY / window.innerHeight;
+  background.setProperty('--glow-x', x * 100 + '%');
+  background.setProperty('--glow-y', y * 100 + '%');
+  background.setProperty('--shift-x', (x - .5) * 24 + 'px');
+  background.setProperty('--shift-y', (y - .5) * 24 + 'px');
 });
 </script>
 </body>
