@@ -125,6 +125,7 @@ header,footer,.hero section,.cards details,.logo-stage,
 .logo-control,.logo-control:hover{background:linear-gradient(145deg,var(--bright),var(--deep));border:1px solid var(--line);box-shadow:0 10px 0 var(--deep),0 18px 28px #0005}
 #metal stop:first-child{stop-color:#fff}
 #metal stop:last-child{stop-color:var(--shine)}
+:root[data-palette="pink"]{--paper:#faeaf1;--ink:#402037;--muted:#684359;--line:#bd8fa7;--blue:#8e3563;--deep:#652447;--bright:#af5883;--shine:#ffc4df}
 </style>
 </head>
 <body>
@@ -137,6 +138,7 @@ header,footer,.hero section,.cards details,.logo-stage,
 <option value="blue">أزرق غني</option>
 <option value="forest">أخضر غابي</option>
 <option value="violet">بنفسجي هادئ</option>
+<option value="pink">وردي هادئ</option>
 </select>
 <button id="language" type="button" lang="en" hidden>English</button>
 </div>
@@ -201,10 +203,10 @@ const sections = {
 };
 const language = byId('language');
 const palette = byId('palette');
-const palettes = ['blue', 'forest', 'violet'];
+const palettes = ['blue', 'forest', 'violet', 'pink'];
 const paletteCopy = {
-  ar: ['ألوان الموقع', 'أزرق غني', 'أخضر غابي', 'بنفسجي هادئ'],
-  en: ['Site colors', 'Rich blue', 'Forest green', 'Soft violet']
+  ar: ['ألوان الموقع', 'أزرق غني', 'أخضر غابي', 'بنفسجي هادئ', 'وردي هادئ'],
+  en: ['Site colors', 'Rich blue', 'Forest green', 'Soft violet', 'Soft pink']
 };
 function applyPalette(value) {
   const selected = palettes.includes(value) ? value : 'blue';
