@@ -101,6 +101,21 @@ header,footer{padding-inline:12px}
 #metal stop:last-child{stop-color:var(--shine)}
 .logo-control .depth{stroke:var(--deep)}
 @media(prefers-reduced-motion:reduce){body::after,.shell::before{transform:none}}
+
+/* Place the content and interactive mark directly on the page background. */
+header,footer,.hero section,.cards details,.logo-stage,
+.logo-control,.logo-control:hover,#palette,#language,#language:hover,
+.github,.github:hover,.instagram,.instagram:hover{
+  background:transparent;
+  border:0;
+  box-shadow:none;
+}
+.github,.instagram,.cards a{color:var(--deep);text-decoration:underline;text-underline-offset:.2em}
+#palette,#language{color:var(--deep)}
+#palette:focus-visible,.cards summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.cards summary:hover,#language:hover{color:var(--blue);text-decoration:underline}
+#metal stop:first-child{stop-color:var(--bright)}
+#metal stop:last-child{stop-color:var(--blue)}
 </style>
 </head>
 <body>
