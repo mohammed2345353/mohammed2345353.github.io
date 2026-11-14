@@ -126,14 +126,43 @@ header,footer,.hero section,.cards details,.logo-stage,
 #metal stop:first-child{stop-color:#fff}
 #metal stop:last-child{stop-color:var(--shine)}
 :root[data-palette="pink"]{--paper:#faeaf1;--ink:#402037;--muted:#684359;--line:#bd8fa7;--blue:#8e3563;--deep:#652447;--bright:#af5883;--shine:#ffc4df}
+
+/* One-line header on phones, project cards with a details dialog, scroll reveal. */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+header,.actions{flex-wrap:nowrap}
+header .tag{white-space:nowrap}
+#palette{max-width:9rem}
+@media(max-width:650px){.tag-long{display:none}header{gap:8px}}
+@media(max-width:340px){header,.actions{flex-wrap:wrap}}
+.stats{color:var(--muted);margin:-.4em 0 18px}
+.stats strong{color:var(--deep);font-size:1.5em}
+.cards{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{display:flex;flex-direction:column;gap:6px;padding:16px 18px;text-align:start;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--paper) 70%,white);color:var(--ink);font:inherit;transition:transform .25s,box-shadow .25s,border-color .25s,opacity .6s}
+.card:hover{background:color-mix(in srgb,var(--paper) 45%,white);transform:translateY(-3px);box-shadow:0 10px 24px #0002;border-color:var(--bright)}
+.card .tag{font-size:.75rem}
+.card strong{font-size:1.05rem}
+.card .desc{color:var(--muted);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.reveal{transition:opacity .6s ease,transform .6s ease}
+.reveal.pending{opacity:0;transform:translateY(18px)}
+#project{width:min(520px,calc(100% - 32px));padding:0;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);box-shadow:0 24px 60px #0004}
+#project::backdrop{background:color-mix(in srgb,var(--deep) 45%,transparent);backdrop-filter:blur(3px)}
+#project>div{padding:20px 24px 18px}
+#project h3{margin:.2em 0;font-size:1.4rem}
+#project p{color:var(--muted)}
+#closeProject{float:inline-end;padding:2px 12px;font-size:1.3rem;line-height:1.2}
+#project[open]{animation:pop .2s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}}
+.build{margin-top:22px}
+.build summary{cursor:pointer;font-weight:700}
+@media(prefers-reduced-motion:reduce){#project[open]{animation:none}.card,.reveal{transition:none}}
 </style>
 </head>
 <body>
 <div class="shell">
 <header>
-<span class="tag" dir="ltr">MS / PORTFOLIO</span>
+<span class="tag" dir="ltr">MS<span class="tag-long"> / PORTFOLIO</span></span>
 <div class="actions">
-<label for="palette" id="palette-label" hidden>ألوان الموقع</label>
+<label for="palette" id="palette-label" class="sr-only">ألوان الموقع</label>
 <select id="palette" hidden>
 <option value="blue">أزرق غني</option>
 <option value="forest">أخضر غابي</option>
@@ -166,14 +195,19 @@ header,footer,.hero section,.cards details,.logo-stage,
 </div>
 </div>
 <section class="work" aria-labelledby="work">
-<h2 id="work">أعمالي</h2>
-<div class="cards">
-<details><summary><span id="social">صناعة المحتوى التقني</span></summary><p id="socialBody">أحوّل أفكار التقنية والذكاء الاصطناعي إلى فيديوهات قصيرة تجمع الشرح والموشن غرافيك.</p><a href="https://www.instagram.com/m7.ai.g/" dir="ltr">Instagram ↗</a></details>
-<details><summary><span id="toolkit">عدّة حدود الذكاء الاصطناعي (10 أدوات)</span></summary><p id="toolkitBody">أدوات مفتوحة المصدر لمشاكل حدود الاستخدام والتوكنز والرصيد في Claude وChatGPT/Codex وGemini.</p><p dir="ltr"><a href="https://github.com/mohammed2345353/burnrate">burnrate</a> · <a href="https://github.com/mohammed2345353/context-diet">context-diet</a> · <a href="https://github.com/mohammed2345353/ai-handoff">ai-handoff</a> · <a href="https://github.com/mohammed2345353/ai-error-decoder">ai-error-decoder</a> · <a href="https://github.com/mohammed2345353/ratelimit-retry">ratelimit-retry</a> · <a href="https://github.com/mohammed2345353/chat-export-md">chat-export-md</a> · <a href="https://github.com/mohammed2345353/mcp-token-audit">mcp-token-audit</a> · <a href="https://github.com/mohammed2345353/logslim">logslim</a> · <a href="https://github.com/mohammed2345353/chunkwise">chunkwise</a> · <a href="https://mohammed2345353.github.io/ai-reset-clock/">AI Reset Clock ↗</a></p></details>
-<details><summary><span id="projects">مشاريع أخرى</span></summary><p id="projectsBody">محاكي تعليمي لمعالج PIC18، ومكتبة برومبتات لـ Gemini وChatGPT، وجسر أدوات Codex على Windows.</p><p dir="ltr"><a href="https://mohammed2345353.github.io/pic18-pipeline-simulator/">PIC18 simulator ↗</a> · <a href="https://github.com/mohammed2345353/ai-prompt-engineering-hub">ai-prompt-engineering-hub</a> · <a href="https://github.com/mohammed2345353/codex-desktop-bridge">codex-desktop-bridge</a></p></details>
-<details><summary><span id="build">شلون انبنى الموقع؟</span></summary><p id="buildBody">صمّمت الصفحة بـ HTML وCSS، واستخدمت JavaScript لتبديل اللغة وتحريك الشعار. ملفات الموقع محفوظة على GitHub وتُنشر عبر GitHub Pages.</p></details>
-</div>
+<h2 id="work" class="reveal">أعمالي</h2>
+<p class="stats reveal"><strong data-count="13">13</strong> <span id="statProjects">مشروع على GitHub</span> · <strong data-count="10">10</strong> <span id="statTools">أدوات مفتوحة المصدر</span></p>
+<div class="cards" id="cards"></div>
+<noscript><p><a href="https://github.com/mohammed2345353" dir="ltr">GitHub ↗</a></p></noscript>
+<details class="build reveal"><summary><span id="build">شلون انبنى الموقع؟</span></summary><p id="buildBody">صمّمت الصفحة بـ HTML وCSS، واستخدمت JavaScript لتبديل اللغة وتحريك الشعار. ملفات الموقع محفوظة على GitHub وتُنشر عبر GitHub Pages.</p></details>
 </section>
+<dialog id="project" aria-labelledby="projectTitle"><div>
+<button type="button" id="closeProject" aria-label="إغلاق">×</button>
+<p class="tag" id="projectCat"></p>
+<h3 id="projectTitle"></h3>
+<p id="projectBody"></p>
+<p class="socials" id="projectLinks"></p>
+</div></dialog>
 </main>
 <footer>
 <span id="footer-name">محمد السراي</span>
@@ -188,24 +222,16 @@ const words = {
 const sections = {
   "ar": {
     "work": "أعمالي",
-    "social": "صناعة المحتوى التقني",
-    "socialBody": "أحوّل أفكار التقنية والذكاء الاصطناعي إلى فيديوهات قصيرة تجمع الشرح والموشن غرافيك.",
-    "toolkit": "عدّة حدود الذكاء الاصطناعي (10 أدوات)",
-    "toolkitBody": "أدوات مفتوحة المصدر لمشاكل حدود الاستخدام والتوكنز والرصيد في Claude وChatGPT/Codex وGemini.",
-    "projects": "مشاريع أخرى",
-    "projectsBody": "محاكي تعليمي لمعالج PIC18، ومكتبة برومبتات لـ Gemini وChatGPT، وجسر أدوات Codex على Windows.",
+    "statProjects": "مشروع على GitHub",
+    "statTools": "أدوات مفتوحة المصدر",
     "build": "شلون انبنى الموقع؟",
     "buildBody": "صمّمت الصفحة بـ HTML وCSS، واستخدمت JavaScript لتبديل اللغة وتحريك الشعار. ملفات الموقع محفوظة على GitHub وتُنشر عبر GitHub Pages.",
     "mark": "حرّك الشعار"
   },
   "en": {
     "work": "My work",
-    "social": "Tech content",
-    "socialBody": "I turn technology and AI ideas into short videos that combine explainers and motion graphics.",
-    "toolkit": "AI limits toolkit (10 tools)",
-    "toolkitBody": "Open-source tools for usage-limit, token and credit problems in Claude, ChatGPT/Codex and Gemini.",
-    "projects": "Other projects",
-    "projectsBody": "A teaching simulator for the PIC18 microcontroller, a prompt library for Gemini and ChatGPT, and a Codex tools bridge for Windows.",
+    "statProjects": "projects on GitHub",
+    "statTools": "open-source tools",
     "build": "How I built this site",
     "buildBody": "I built the page with HTML and CSS, and used JavaScript for language switching and logo interaction. The source lives on GitHub and the site runs on GitHub Pages.",
     "mark": "Tilt the logo"
@@ -225,7 +251,7 @@ function applyPalette(value) {
 }
 try { applyPalette(localStorage.getItem('portfolio-palette')); }
 catch { applyPalette('blue'); }
-palette.hidden = byId('palette-label').hidden = false;
+palette.hidden = false;
 palette.addEventListener('change', () => {
   applyPalette(palette.value);
   try { localStorage.setItem('portfolio-palette', palette.value); } catch {}
@@ -247,6 +273,8 @@ function translate(next) {
   const { mark, ...labels } = sections[locale];
   for (const [id, value] of Object.entries(labels)) byId(id).textContent = value;
   byId('logo').setAttribute('aria-label', mark);
+  byId('closeProject').setAttribute('aria-label', ui[locale].close);
+  renderCards();
 }
 language.hidden = false;
 language.onclick = () => translate(locale === 'ar' ? 'en' : 'ar');
@@ -280,6 +308,106 @@ window.addEventListener('pointermove', event => {
   background.setProperty('--shift-x', (x - .5) * 24 + 'px');
   background.setProperty('--shift-y', (y - .5) * 24 + 'px');
 });
+
+const ui = {
+  ar: { code: 'الكود على GitHub ↗', demo: 'جرّبه ↗', close: 'إغلاق',
+    cats: { content: 'محتوى', tool: 'عدّة حدود الذكاء الاصطناعي', edu: 'تعليم', prompts: 'برومبتات', windows: 'أدوات Windows' } },
+  en: { code: 'Code on GitHub ↗', demo: 'Try it ↗', close: 'Close',
+    cats: { content: 'Content', tool: 'AI limits toolkit', edu: 'Education', prompts: 'Prompts', windows: 'Windows tools' } }
+};
+const projects = [
+  { id: 'content', cat: 'content', title: { ar: 'صناعة المحتوى التقني', en: 'Tech content' }, demo: 'https://www.instagram.com/m7.ai.g/', demoLabel: 'Instagram ↗',
+    ar: 'أحوّل أفكار التقنية والذكاء الاصطناعي إلى فيديوهات قصيرة تجمع الشرح والموشن غرافيك.',
+    en: 'I turn technology and AI ideas into short videos that combine explainers and motion graphics.' },
+  { id: 'burnrate', cat: 'tool',
+    ar: 'يتوقّع متى يوصل Claude Code وCodex CLI لحد الخمس ساعات والحد الأسبوعي، من السجلات المحلية.',
+    en: 'Forecast when Claude Code and Codex CLI will hit their 5-hour and weekly usage limits, from your local logs.' },
+  { id: 'context-diet', cat: 'tool',
+    ar: 'يلقى الحشو بملفات التعليمات مثل CLAUDE.md وAGENTS.md وGEMINI.md اللي تدفع توكنزها ويه كل رسالة.',
+    en: 'Find the bloat in CLAUDE.md, AGENTS.md, GEMINI.md and other AI instruction files you pay for on every message.' },
+  { id: 'ai-handoff', cat: 'tool',
+    ar: 'خلص رصيدك بنص الشغل؟ يسوي ملف تسليم وبرومبت حتى تكمل بـ Claude أو Codex أو Gemini أو ChatGPT بدون ما يضيع السياق.',
+    en: 'Hit a usage limit mid-task? Generate a handoff file and prompt to continue in Claude, Codex, Gemini or ChatGPT without losing context.' },
+  { id: 'ai-error-decoder', cat: 'tool',
+    ar: 'الصق أي خطأ API من Claude أو OpenAI أو Gemini، ويطلعلك السبب ووقت رجوع الرصيد والحل.',
+    en: 'Paste any Claude, OpenAI or Gemini API error and get a plain-English cause, reset time and fix.' },
+  { id: 'ratelimit-retry', cat: 'tool',
+    ar: 'يعيد طلبات Anthropic وOpenAI وGemini بالطريقة اللي يطلبها كل مزوّد، وما يعيد أبد أخطاء الفوترة أو الحد اليومي.',
+    en: 'Retry Anthropic, OpenAI and Gemini API calls the way each provider asks, and never retry billing or daily-quota errors.' },
+  { id: 'chat-export-md', cat: 'tool',
+    ar: 'يحوّل تصدير محادثات ChatGPT وClaude وGemini لملفات Markdown نظيفة، للأرشفة أو البحث أو نقل المحادثة لذكاء ثاني.',
+    en: 'Turn ChatGPT, Claude and Gemini data exports into clean Markdown to archive, search or move a conversation.' },
+  { id: 'mcp-token-audit', cat: 'tool',
+    ar: 'يقيس كم توكن يضيف كل سيرفر MCP لكل طلب بسبب تعريفات أدواته، بـ Claude Code وCodex وGemini CLI وCursor.',
+    en: "Measure how many tokens each MCP server's tool definitions add to every request in Claude Code, Codex, Gemini CLI and Cursor." },
+  { id: 'logslim', cat: 'tool',
+    ar: 'يصغّر السجلات ورسائل الأخطاء قبل ما تلصقها بالمحادثة. نفس المعلومة بجزء من التوكنز.',
+    en: 'Shrink logs, stack traces and command output before pasting them into an AI chat. Same signal, a fraction of the tokens.' },
+  { id: 'chunkwise', cat: 'tool',
+    ar: 'يقسّم الملفات والمشاريع الكبيرة لقطع على قد ميزانية التوكنز، ويه برومبت تكملة لكل قطعة.',
+    en: 'Split big files and codebases into token-budgeted chunks with continuation prompts for web chats.' },
+  { id: 'ai-reset-clock', cat: 'tool', title: 'AI Reset Clock', demo: 'https://mohammed2345353.github.io/ai-reset-clock/',
+    ar: 'متى يرجع رصيد Claude وChatGPT/Codex وGemini؟ عدّاد تنازلي بتوقيتك.',
+    en: 'When does my Claude, ChatGPT/Codex or Gemini quota reset? Countdowns in your timezone.' },
+  { id: 'pic18-pipeline-simulator', cat: 'edu', title: 'PIC18 simulator', demo: 'https://mohammed2345353.github.io/pic18-pipeline-simulator/',
+    ar: 'مختبر تعليمي تفاعلي يشرح جلب التعليمات وتنفيذها ومعمارية هارفارد بمعالج PIC18.',
+    en: 'Interactive teaching lab for PIC18 instruction fetch, execution and Harvard architecture.' },
+  { id: 'ai-prompt-engineering-hub', cat: 'prompts',
+    ar: 'برومبتات نظام وقوالب XML للسياق الطويل وسير عمل للتفكير، لـ Gemini وChatGPT.',
+    en: 'System prompts, long-context XML templates and reasoning workflows for Gemini and ChatGPT.' },
+  { id: 'codex-desktop-bridge', cat: 'windows',
+    ar: 'مستشار أدوات ومخطط سير عمل لـ Codex على Windows، ويه اختصارات PowerShell.',
+    en: 'AI tool advisor and workflow planner for Codex on Windows, with PowerShell shortcuts.' }
+];
+const titleOf = p => typeof p.title === 'object' ? p.title[locale] : p.title || p.id;
+const dialog = byId('project');
+function link(href, text, cls) {
+  const a = document.createElement('a');
+  Object.assign(a, { href, textContent: text, className: cls });
+  return a;
+}
+function openProject(p) {
+  byId('projectCat').textContent = ui[locale].cats[p.cat];
+  byId('projectTitle').textContent = titleOf(p);
+  byId('projectBody').textContent = p[locale];
+  const links = [];
+  if (p.demo) links.push(link(p.demo, p.demoLabel || ui[locale].demo, 'github'));
+  if (p.cat !== 'content') links.push(link('https://github.com/mohammed2345353/' + p.id, ui[locale].code, p.demo ? 'instagram' : 'github'));
+  byId('projectLinks').replaceChildren(...links);
+  dialog.showModal();
+}
+function renderCards() {
+  byId('cards').replaceChildren(...projects.map(p => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'card';
+    card.innerHTML = '<span class="tag"></span><strong></strong><span class="desc"></span>';
+    card.children[0].textContent = ui[locale].cats[p.cat];
+    card.children[1].textContent = titleOf(p);
+    card.children[2].textContent = p[locale];
+    card.onclick = () => openProject(p);
+    return card;
+  }));
+}
+byId('closeProject').onclick = () => dialog.close();
+dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+renderCards();
+
+function countUp(el) {
+  const target = +el.dataset.count;
+  let n = 0;
+  const step = () => { el.textContent = ++n; if (n < target) setTimeout(step, 70); };
+  step();
+}
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  const io = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.remove('pending');
+    entry.target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(entry.target);
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal, .card').forEach(el => { el.classList.add('reveal', 'pending'); io.observe(el); });
+}
 </script>
 </body>
 </html>
