@@ -6,6 +6,8 @@ AI developer building AI tools, extensions and MCP integrations, and making shor
 
 ## Featured projects
 
+**New: [ReelVet](https://github.com/mohammed2345353/reelvet)**, a Claude Code skill that vets AI-tool reels before you trust them.
+
 **AI limits toolkit:** open-source tools for usage-limit, token and credit problems in Claude, ChatGPT/Codex and Gemini:
 
 | Tool | What it does |
