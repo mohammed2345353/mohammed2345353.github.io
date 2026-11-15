@@ -29,18 +29,39 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
 <script>
 // set theme before paint to avoid a flash
-try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch{}
+try{const d=document.documentElement,t=localStorage.getItem('theme'),p=localStorage.getItem('palette');if(t)d.dataset.theme=t;if(p&&p!=='ember')d.dataset.palette=p}catch{}
 </script>
 <style>
 :root{
   --paper:#f3f1ec;--ink:#151513;--muted:#5f5d57;--faint:#6c6a62;--line:#d8d4ca;--hover:#e9e6de;
-  --accent:#b8430f;
+  --a-light:#b8430f;--a-dark:#ff7a3d;--accent:var(--a-light);--bg-op:.13;
   --sans:"IBM Plex Sans Arabic",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace;
   --gut:clamp(16px,4vw,48px);--max:1240px;
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#10100f;--ink:#ecebe6;--muted:#a3a198;--faint:#8f8d84;--line:#2a2926;--hover:#1a1a18;--accent:#ff7a3d;color-scheme:dark}}
-:root[data-theme=dark]{--paper:#10100f;--ink:#ecebe6;--muted:#a3a198;--faint:#8f8d84;--line:#2a2926;--hover:#1a1a18;--accent:#ff7a3d;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#10100f;--ink:#ecebe6;--muted:#a3a198;--faint:#8f8d84;--line:#2a2926;--hover:#1a1a18;--accent:var(--a-dark);--bg-op:.24;color-scheme:dark}}
+:root[data-theme=dark]{--paper:#10100f;--ink:#ecebe6;--muted:#a3a198;--faint:#8f8d84;--line:#2a2926;--hover:#1a1a18;--accent:var(--a-dark);--bg-op:.24;color-scheme:dark}
+/* accent palettes: the page stays neutral, only the accent and the circuit lines change */
+:root[data-palette=blue]{--a-light:#175897;--a-dark:#4c9dff}
+:root[data-palette=violet]{--a-light:#63458a;--a-dark:#a77ff5}
+:root[data-palette=pink]{--a-light:#8e3563;--a-dark:#ee6aab}
+
+/* circuit background (generated with Gemini), tinted with the accent through a luminance mask */
+body{isolation:isolate}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--accent);opacity:var(--bg-op);
+  -webkit-mask:url(bg-circuit.webp) center/cover no-repeat;mask:url(bg-circuit.webp) center/cover no-repeat luminance;transition:background-color .4s,opacity .4s}
+html[dir=rtl] body::before{transform:scaleX(-1)}
+@media (max-width:760px){body::before{-webkit-mask-position:70% 50%;mask-position:70% 50%}}
+
+.swatches{display:flex;align-items:center;gap:6px;padding-inline:4px}
+.swatch{width:16px;height:16px;padding:0;border-radius:50%;border:2px solid var(--paper);outline:1px solid var(--line);background:var(--c);cursor:pointer}
+.swatch[aria-pressed=true]{outline:2px solid var(--ink)}
+.swatch:hover{transform:scale(1.15)}
+#theme .ico{display:none}
+@media (max-width:480px){
+  .top .wrap{gap:8px}.tools{gap:4px}.swatches{gap:4px;padding-inline:2px}.swatch{width:14px;height:14px}
+  .btn-ghost{padding:6px 9px}#theme .txt{display:none!important}#theme .ico{display:inline}
+}
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -104,7 +125,7 @@ html[lang=en] h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4
 .steps li{counter-increment:s;display:flex;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:.95rem}
 .steps li::before{content:counter(s,decimal-leading-zero);font:500 .78rem/1.9 var(--mono);color:var(--faint)}
 .code{position:relative;align-self:start;background:var(--ink);color:var(--paper);border-radius:6px;padding:18px 18px 16px;font:400 .84rem/1.75 var(--mono);direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;padding-top:40px}
-.code .c{color:color-mix(in srgb,var(--paper) 55%,var(--ink))}
+.code .c{color:color-mix(in srgb,var(--paper) 70%,var(--ink))}
 .copy{position:absolute;top:10px;right:10px;font:500 .7rem var(--mono);text-transform:uppercase;background:none;color:inherit;border:1px solid color-mix(in srgb,var(--paper) 35%,transparent);border-radius:4px;padding:5px 10px;cursor:pointer}
 .links{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
 .ul{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;font-weight:500}
@@ -167,8 +188,14 @@ html[lang=en] .big{font-family:var(--serif);font-weight:400;font-size:clamp(2.6r
       <a class="nl" href="#about"><span data-l="ar">عنّي</span><span data-l="en">About</span></a>
       <a class="nl" href="#contact"><span data-l="ar">تواصل</span><span data-l="en">Contact</span></a>
       <div class="tools">
+        <div class="swatches" role="group" aria-label="Accent color">
+          <button class="swatch" type="button" data-p="ember" style="--c:#d2561c" aria-label="Orange"></button>
+          <button class="swatch" type="button" data-p="blue" style="--c:#2f7bd6" aria-label="Blue"></button>
+          <button class="swatch" type="button" data-p="violet" style="--c:#8460c0" aria-label="Violet"></button>
+          <button class="swatch" type="button" data-p="pink" style="--c:#cf4c8e" aria-label="Pink"></button>
+        </div>
         <button class="btn-ghost" id="lang" type="button" lang="en">EN</button>
-        <button class="btn-ghost" id="theme" type="button" aria-label="Toggle dark mode"><span data-l="ar">المظهر</span><span data-l="en">Theme</span></button>
+        <button class="btn-ghost" id="theme" type="button" aria-label="Toggle dark mode"><span class="ico" aria-hidden="true">◐</span><span class="txt" data-l="ar">المظهر</span><span class="txt" data-l="en">Theme</span></button>
       </div>
     </nav>
   </div>
@@ -308,6 +335,15 @@ addEventListener('DOMContentLoaded', () => {
     const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     root.dataset.theme = dark ? 'light' : 'dark'; store('theme', root.dataset.theme);
   };
+
+  const swatches = document.querySelectorAll('.swatch');
+  function setPalette(p) {
+    if (![...swatches].some(s => s.dataset.p === p)) p = 'ember';
+    p === 'ember' ? delete root.dataset.palette : root.dataset.palette = p;
+    swatches.forEach(s => s.setAttribute('aria-pressed', s.dataset.p === p));
+  }
+  setPalette(store('palette'));
+  swatches.forEach(s => s.onclick = () => { setPalette(s.dataset.p); store('palette', s.dataset.p); });
 
   document.querySelectorAll('[data-copy]').forEach(btn => btn.onclick = async () => {
     const text = btn.parentElement.innerText.split('\n').filter(l => l.startsWith('claude ')).join('\n');
