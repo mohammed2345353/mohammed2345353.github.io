@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="AI Developer | Building AI tools, extensions, and MCP integrations to connect systems and automate workflows.">
 <title>محمد السراي | Mohammed Al-Saray</title>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohammed2345353.github.io/">
+<meta property="og:title" content="Mohammed Al-Saray | محمد السراي">
+<meta property="og:description" content="AI Developer | Building AI tools, extensions, and MCP integrations to connect systems and automate workflows.">
+<meta property="og:image" content="https://mohammed2345353.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700&amp;display=swap">
 <style>
 :root{color-scheme:light;--paper:#f5f5f7;--ink:#1d1d1f;--muted:#55555b;--blue:#0066cc;--line:#d8d8de}
@@ -136,12 +144,9 @@ header .tag{white-space:nowrap}
 @media(max-width:340px){header,.actions{flex-wrap:wrap}}
 .stats{color:var(--muted);margin:-.4em 0 18px}
 .stats strong{color:var(--deep);font-size:1.5em}
-.cards{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
-.card{display:flex;flex-direction:column;gap:6px;padding:16px 18px;text-align:start;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--paper) 70%,white);color:var(--ink);font:inherit;transition:transform .25s,box-shadow .25s,border-color .25s,opacity .6s}
-.card:hover{background:color-mix(in srgb,var(--paper) 45%,white);transform:translateY(-3px);box-shadow:0 10px 24px #0002;border-color:var(--bright)}
-.card .tag{font-size:.75rem}
-.card strong{font-size:1.05rem}
-.card .desc{color:var(--muted);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cards{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.card{padding:12px 16px;font-weight:650;text-align:start;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--paper) 70%,white);color:var(--ink);font:inherit;transition:transform .25s,box-shadow .25s,border-color .25s,opacity .6s}
+.card:hover{box-shadow:0 10px 24px #0002;border-color:var(--bright)}
 .reveal{transition:opacity .6s ease,transform .6s ease}
 .reveal.pending{opacity:0;transform:translateY(18px)}
 #project{width:min(520px,calc(100% - 32px));padding:0;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);box-shadow:0 24px 60px #0004}
@@ -149,15 +154,88 @@ header .tag{white-space:nowrap}
 #project>div{padding:20px 24px 18px}
 #project h3{margin:.2em 0;font-size:1.4rem}
 #project p{color:var(--muted)}
-#closeProject{float:inline-end;padding:2px 12px;font-size:1.3rem;line-height:1.2}
+#closeProject{float:inline-end;background:transparent;color:var(--ink);border:1px solid var(--line);padding:2px 12px;font-size:1.3rem;line-height:1.2}
 #project[open]{animation:pop .2s ease-out}
 @keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}}
 .build{margin-top:22px}
 .build summary{cursor:pointer;font-weight:700}
 @media(prefers-reduced-motion:reduce){#project[open]{animation:none}.card,.reveal{transition:none}}
+
+/* === VARIANT C: AURORA & MAGNETIC CSS === */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0b1320;--ink:#eef6ff;--muted:#9cb6d4;--line:#233b5c;
+  --blue:#2b84ea;--deep:#7cc0ff;--bright:#3898ff;--shine:#1d4e89;
+}
+:root[data-theme="dark"][data-palette="forest"]{
+  --paper:#091813;--ink:#e9faf2;--muted:#93bda9;--line:#1e4637;
+  --blue:#2aa876;--deep:#7be6b9;--bright:#38c88e;--shine:#174f38;
+}
+:root[data-theme="dark"][data-palette="violet"]{
+  --paper:#130d21;--ink:#f5eeff;--muted:#b49fd1;--line:#39265c;
+  --blue:#8c5ae0;--deep:#d0b3ff;--bright:#a678f5;--shine:#3c2070;
+}
+:root[data-theme="dark"][data-palette="pink"]{
+  --paper:#1c0c16;--ink:#ffedf6;--muted:#d19bb8;--line:#542341;
+  --blue:#d6458b;--deep:#ffadd6;--bright:#ea62a5;--shine:#631d42;
+}
+body{overflow-x:hidden;transition:background-color .35s,color .35s}
+body::before{
+  opacity:.85;
+  background:
+    radial-gradient(480px circle at var(--glow-x,75%) var(--glow-y,32%),color-mix(in srgb,var(--shine) 92%,transparent),transparent 65%),
+    radial-gradient(560px circle at var(--orb-x,22%) var(--orb-y,68%),color-mix(in srgb,var(--bright) 50%,transparent),transparent 65%);
+}
+body::after{opacity:.28}
+#aurora-canvas{
+  position:fixed;inset:-60px;width:calc(100% + 120px);height:calc(100% + 120px);filter:blur(28px);
+  pointer-events:none;z-index:-1;
+}
+#theme-toggle{
+  padding:6px 11px;border:1px solid var(--line);border-radius:8px;
+  background:color-mix(in srgb,var(--paper) 75%,var(--shine));
+  color:var(--ink);font-weight:650;
+}
+#palette,#language{
+  padding:6px 10px;border:1px solid var(--line);border-radius:8px;
+  background:color-mix(in srgb,var(--paper) 80%,var(--shine) 20%);
+  color:var(--ink);
+}
+@media(max-width:420px){
+  #palette{max-width:6.8rem;font-size:.88rem}
+  #language,#theme-toggle{padding:6px 8px;font-size:.88rem}
+}
+.hero section{
+  background:color-mix(in srgb,var(--paper) 76%,transparent);
+  backdrop-filter:blur(14px);
+  border:1px solid color-mix(in srgb,var(--line) 75%,var(--bright));
+  box-shadow:0 24px 54px #0003;
+}
+.card,.github,.instagram{
+  position:relative;overflow:hidden;
+  transform:translate3d(var(--mx,0px),var(--my,0px),0);
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s,background-color .25s;
+}
+.card{
+  background:color-mix(in srgb,var(--paper) 82%,var(--shine) 18%);
+  backdrop-filter:blur(10px);
+  border:1px solid color-mix(in srgb,var(--line) 80%,var(--bright));
+}
+.card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(190px circle at var(--cx,50%) var(--cy,50%),color-mix(in srgb,var(--bright) 38%,transparent),transparent 72%);
+  opacity:0;transition:opacity .25s;
+}
+.card:hover::after,.card:active::after{opacity:1}
+.card:hover,.card:active{
+  border-color:var(--bright);
+  box-shadow:0 14px 32px #0004;
+}
+/* === END VARIANT C: AURORA & MAGNETIC CSS === */
 </style>
 </head>
 <body>
+<canvas id="aurora-canvas" aria-hidden="true"></canvas>
 <div class="shell">
 <header>
 <span class="tag" dir="ltr">MS<span class="tag-long"> / PORTFOLIO</span></span>
@@ -169,6 +247,7 @@ header .tag{white-space:nowrap}
 <option value="violet">بنفسجي هادئ</option>
 <option value="pink">وردي هادئ</option>
 </select>
+<button id="theme-toggle" type="button" aria-label="تبديل المظهر">☾</button>
 <button id="language" type="button" lang="en" hidden>English</button>
 </div>
 </header>
@@ -381,10 +460,7 @@ function renderCards() {
     const card = document.createElement('button');
     card.type = 'button';
     card.className = 'card';
-    card.innerHTML = '<span class="tag"></span><strong></strong><span class="desc"></span>';
-    card.children[0].textContent = ui[locale].cats[p.cat];
-    card.children[1].textContent = titleOf(p);
-    card.children[2].textContent = p[locale];
+    card.textContent = titleOf(p);
     card.onclick = () => openProject(p);
     return card;
   }));
@@ -408,8 +484,131 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
   }), { threshold: .15 });
   document.querySelectorAll('.reveal, .card').forEach(el => { el.classList.add('reveal', 'pending'); io.observe(el); });
 }
+
+// === VARIANT C: AURORA & MAGNETIC JS ===
+(() => {
+  const themeBtn = byId('theme-toggle');
+  function setTheme(mode) {
+    document.documentElement.dataset.theme = mode;
+    themeBtn.textContent = mode === 'dark' ? '☀' : '☾';
+  }
+  try { setTheme(localStorage.getItem('portfolio-theme') || 'dark'); }
+  catch { setTheme('dark'); }
+  themeBtn.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    readColors();
+    if (reducedMotion.matches) draw(true);
+    try { localStorage.setItem('portfolio-theme', next); } catch {}
+  });
+
+  const canvas = byId('aurora-canvas');
+  const ctx = canvas.getContext('2d');
+  let w = 0, h = 0, dpr = 1, raf = 0, t = 0;
+  let colors = {};
+  const pointer = { x: 0.7, y: 0.3, tx: 0.7, ty: 0.3 };
+
+  function readColors() {
+    const s = getComputedStyle(document.documentElement);
+    colors = {
+      blue: s.getPropertyValue('--blue').trim() || '#175897',
+      bright: s.getPropertyValue('--bright').trim() || '#3b7db0',
+      deep: s.getPropertyValue('--deep').trim() || '#113f70',
+      shine: s.getPropertyValue('--shine').trim() || '#a9d9ff'
+    };
+  }
+
+  function drawRibbon(yBase, amp, freq, phase, color, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = w < 600 ? 55 : 90;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    for (let x = -40; x <= w + 40; x += 28) {
+      const y = yBase + Math.sin(x * freq + phase) * amp + Math.cos(x * freq * 0.6 - phase) * (amp * 0.5);
+      x === -40 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function draw(staticOnly = false) {
+    ctx.clearRect(0, 0, w, h);
+    if (!staticOnly) {
+      t += 0.016;
+      pointer.x += (pointer.tx - pointer.x) * 0.08;
+      pointer.y += (pointer.ty - pointer.y) * 0.08;
+    }
+    const py = (pointer.y - 0.5) * 90;
+    drawRibbon(h * 0.26 + py, 65, 0.0035, t, colors.bright, 0.34);
+    drawRibbon(h * 0.54 - py * 0.7, 80, 0.0028, -t * 0.8 + 1.4, colors.blue, 0.28);
+    drawRibbon(h * 0.78 + py * 0.5, 55, 0.0042, t * 1.1 + 3.1, colors.shine, 0.38);
+
+    if (!staticOnly) raf = requestAnimationFrame(() => draw(false));
+  }
+
+  function resize() {
+    dpr = .5; // blurred anyway, so low resolution is invisible and cheap
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    readColors();
+    cancelAnimationFrame(raf);
+    if (reducedMotion.matches) draw(true);
+    else if (!document.hidden) draw(false);
+  }
+
+  window.addEventListener('resize', resize);
+  palette.addEventListener('change', () => {
+    readColors();
+    if (reducedMotion.matches) draw(true);
+  });
+  document.addEventListener('visibilitychange', () => {
+    cancelAnimationFrame(raf);
+    if (!document.hidden && !reducedMotion.matches) draw(false);
+  });
+  reducedMotion.addEventListener('change', resize);
+
+  let activeMag = null;
+  window.addEventListener('pointermove', e => {
+    if (reducedMotion.matches) return;
+    pointer.tx = e.clientX / w;
+    pointer.ty = e.clientY / h;
+    background.setProperty('--glow-x', (pointer.tx * 100).toFixed(1) + '%');
+    background.setProperty('--glow-y', (pointer.ty * 100).toFixed(1) + '%');
+    background.setProperty('--orb-x', ((1 - pointer.tx) * 100).toFixed(1) + '%');
+    background.setProperty('--orb-y', ((1 - pointer.ty) * 100).toFixed(1) + '%');
+
+    const mag = e.target.closest && e.target.closest('.card, .github, .instagram');
+    if (activeMag && activeMag !== mag) {
+      activeMag.style.setProperty('--mx', '0px');
+      activeMag.style.setProperty('--my', '0px');
+    }
+    activeMag = mag;
+    if (mag) {
+      const r = mag.getBoundingClientRect();
+      const cx = e.clientX - r.left, cy = e.clientY - r.top;
+      mag.style.setProperty('--cx', cx + 'px');
+      mag.style.setProperty('--cy', cy + 'px');
+      mag.style.setProperty('--mx', ((cx / r.width - 0.5) * 10).toFixed(1) + 'px');
+      mag.style.setProperty('--my', ((cy / r.height - 0.5) * 8).toFixed(1) + 'px');
+    }
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    if (reducedMotion.matches) return;
+    const maxS = Math.max(1, document.documentElement.scrollHeight - h);
+    const ratio = window.scrollY / maxS;
+    pointer.ty = 0.2 + ratio * 0.6;
+    background.setProperty('--orb-y', (25 + ratio * 55).toFixed(1) + '%');
+  }, { passive: true });
+
+  resize();
+})();
+// === END VARIANT C: AURORA & MAGNETIC JS ===
 </script>
 </body>
 </html>
-
-
