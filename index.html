@@ -343,7 +343,7 @@ addEventListener('DOMContentLoaded', () => {
     p === 'ember' ? delete root.dataset.palette : root.dataset.palette = p;
     swatches.forEach(s => s.setAttribute('aria-pressed', s.dataset.p === p));
   }
-  setPalette(store('palette'));
+  setPalette(new URLSearchParams(location.search).get('palette') || store('palette'));
   swatches.forEach(s => s.onclick = () => { setPalette(s.dataset.p); store('palette', s.dataset.p); });
 
   document.querySelectorAll('[data-copy]').forEach(btn => btn.onclick = async () => {
