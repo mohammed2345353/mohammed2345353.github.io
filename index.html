@@ -226,6 +226,38 @@ html[lang=en] .big{font-family:var(--serif);font-weight:400;font-size:clamp(2.6r
         <p><span data-l="ar">كل مشروع هنا مفتوح المصدر على GitHub، ومبني لحل مشكلة واجهتها بنفسي بشغلي اليومي ويا أدوات الذكاء الاصطناعي.</span><span data-l="en">Everything here is open source on GitHub, and each one started as a problem I hit in my own daily work with AI tools.</span></p>
       </div>
 
+      <article class="feature fade" aria-labelledby="cz">
+        <div>
+          <span class="badge"><span data-l="ar">جديد · لعبة تعاونية</span><span data-l="en">New · Cooperative game</span></span>
+          <h3 id="cz">CODE ZERO</h3>
+          <p><span data-l="ar">لعبة تحقيق للمعارض الجامعية: 2–4 طلاب بفريق، كل واحد بهاتفه ودور سري، ولازم يتعاونون حتى يوقفون الذكاء الاصطناعي ZERO قبل لا يمسح الأرشيف.</span><span data-l="en">A detective game for university exhibitions: 2–4 students per team, each on their own phone with a secret role, working together to stop the AI called ZERO before it wipes the archive.</span></p>
+          <ol class="steps">
+            <li><span data-l="ar">المضيف يفتح الموقع ويعرض QR على الشاشة الكبيرة. الطلاب يصوّرونه وينضمون من متصفح الهاتف، بدون حساب وبدون تثبيت.</span><span data-l="en">The host opens the site and shows a QR on the big screen. Students scan it and join from the phone browser, with no account and no install.</span></li>
+            <li><span data-l="ar">ثلاث ألغاز مترابطة بمنطق برمجي بدون أسئلة برمجة مباشرة: من الفاعل، وين القفل، وشنو رمز الإيقاف. كل دور يشوف أدلة ما يشوفها غيره، فلازم يحچون ويتعاونون.</span><span data-l="en">Three linked puzzles built on programming logic without any direct coding questions: who did it, where the lock is, and what the stop code is. Each role sees clues nobody else can, so the team has to talk.</span></li>
+            <li><span data-l="ar">المضيف يراقب الفرق مباشرة: المرحلة والمؤقت والتلميحات والنقاط من 100، ولوحة صدارة وإعلان الفائز.</span><span data-l="en">The host watches every team live: stage, timer, hints and a score out of 100, plus a leaderboard and a winner announcement.</span></li>
+            <li><span data-l="ar">الحلول ما توصل أي هاتف: صفحة المضيف هي الخادم، والقضايا محفوظة مشفّرة بالمستودع العام ولا تنفتح إلا بكلمة سر المضيف.</span><span data-l="en">Solutions never reach a phone: the host page is the server, and the cases sit encrypted in the public repo, opened only by the host password.</span></li>
+          </ol>
+          <div class="links">
+            <a class="ul" href="https://mohammed2345353.github.io/code-zero/?demo"><span data-l="ar">جرّب المحاكاة ↗</span><span data-l="en">Try the demo ↗</span></a>
+            <a class="ul" href="https://github.com/mohammed2345353/code-zero">GitHub ↗</a>
+          </div>
+        </div>
+        <pre class="code"><span class="c"># CODE ZERO, spec sheet</span>
+players   2-4 per team, own phone
+time      4:00  (hard mode 3:00)
+roles     analyst · network · forensics · field
+puzzles   3 linked: logic → trace → decode
+score     out of 100 (time, hints, mistakes)
+hints     3 per team, each costs 15s
+
+<span class="c"># how it is built</span>
+stack     React · TypeScript · Tailwind
+network   WebRTC (PeerJS), host page = server
+secrets   case packs AES-256-GCM encrypted
+tests     10 engine tests + case validator
+langs     Arabic (RTL) + English</pre>
+      </article>
+
       <article class="feature fade" aria-labelledby="rv">
         <div>
           <span class="badge"><span data-l="ar">جديد · مهارة Claude Code</span><span data-l="en">New · Claude Code skill</span></span>

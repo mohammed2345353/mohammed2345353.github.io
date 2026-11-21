@@ -6,6 +6,8 @@ AI developer building AI tools, extensions and MCP integrations, and making shor
 
 ## Featured projects
 
+**New: [CODE ZERO](https://github.com/mohammed2345353/code-zero)**, a cooperative detective game for university exhibitions: 2-4 students per team on their own phones, three linked puzzles, a host screen with a live QR and leaderboard. [Demo](https://mohammed2345353.github.io/code-zero/?demo)
+
 **New: [ReelVet](https://github.com/mohammed2345353/reelvet)**, a Claude Code skill that vets AI-tool reels before you trust them.
 
 **AI limits toolkit:** open-source tools for usage-limit, token and credit problems in Claude, ChatGPT/Codex and Gemini:
